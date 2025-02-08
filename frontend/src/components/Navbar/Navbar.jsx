@@ -71,7 +71,6 @@ const Navbar = () => {
             <Link to="/" onClick={handleLinkClick}>Home</Link>
             <Link to="/todo" onClick={handleLinkClick}>Todo</Link>
             <Link to="/activity" onClick={handleLinkClick}>Activity</Link>
-            <Link to="/streak-board" onClick={handleLinkClick}>Streak Board</Link>
           </div>
 
           <div className="auth-section">

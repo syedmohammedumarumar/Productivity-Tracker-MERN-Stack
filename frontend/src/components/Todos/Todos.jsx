@@ -102,7 +102,7 @@ const Todos = () => {
     <div className="todo-container">
       <h1 className="todo-title">Todo List</h1>
       
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="error-message">{error} please Login</div>}
       
       <button 
         className="add-todo-btn"

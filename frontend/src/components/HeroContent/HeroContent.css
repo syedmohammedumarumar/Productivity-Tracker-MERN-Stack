@@ -60,15 +60,16 @@
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
-
 .feature-card {
+  max-width: 370px; /* Reduce the card width */
+  width: 100%; /* Ensure it remains responsive */
   background: white;
-  padding: 2rem;
+  padding: 1.5rem; /* Reduce padding slightly */
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -76,7 +77,10 @@
   border: 1px solid rgba(229, 231, 235, 0.5);
   position: relative;
   overflow: hidden;
+  margin: 0 auto; /* Center the cards */
 }
+
+
 
 .feature-card::before {
   content: '';
@@ -115,7 +119,7 @@
   list-style: none;
   padding: 0;
   margin: 1.5rem 0 0 0;
-  text-align: left;
+  text-align: center;
 }
 
 .feature-list li {

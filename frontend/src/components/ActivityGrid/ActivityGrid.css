@@ -1,0 +1,35 @@
+.progress-tracker {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .contribution-graph {
+    display: grid;
+    grid-template-columns: repeat(53, 1fr);
+    gap: 2px;
+  }
+  
+  .day-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  
+  .day-box.active {
+    background-color: #4CAF50;
+    animation: pulse 0.5s;
+  }
+  
+  .day-box.inactive {
+    background-color: #2a2a2a;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }

@@ -17,47 +17,42 @@ const HeroContent = () => {
       </div>
 
       <div className="features-grid">
-        <div className="feature-card">
-          <div className="feature-icon">📝</div>
-          <h3>Smart Todo Lists</h3>
-          <p>Organize tasks efficiently with our intuitive todo management system</p>
-          <ul className="feature-list">
-            <li>Create multiple task lists</li>
-            <li>Set priorities and due dates</li>
-            <li>Track completion status</li>
-            <li>Add notes and subtasks</li>
-          </ul>
-        </div>
+      <div className="feature-card">
+  <div className="feature-icon">📝</div>
+  <h3>Smart Todo Lists</h3>
+  <p>Stay productive with our To-Do List management system.</p>
+  <ul className="feature-list">
+    <li>Add and manage your tasks effortlessly</li>
+    <li>Edit tasks to keep them up to date</li>
+    <li>Delete completed or unnecessary tasks</li>
+    <li>⚡ Boost productivity, stay organized</li>
+  </ul>
+ 
+</div>
 
-        <div className="feature-card">
-          <div className="feature-icon">📊</div>
-          <h3>Activity Tracking</h3>
-          <p>Monitor your daily progress and visualize your productivity patterns</p>
-          <ul className="feature-list">
-            <li>Daily activity summaries</li>
-            <li>Progress visualization</li>
-            <li>Performance analytics</li>
-            <li>Custom goal setting</li>
-          </ul>
-        </div>
 
-        <div className="feature-card">
-          <div className="feature-icon">🔥</div>
-          <h3>Streak Board</h3>
-          <p>Stay motivated by maintaining and tracking your daily streaks</p>
-          <ul className="feature-list">
-            <li>Daily streak counter</li>
-            <li>Achievement badges</li>
-            <li>Weekly challenges</li>
-            <li>Personal best records</li>
-          </ul>
-        </div>
+<div className="feature-card">
+  <div className="feature-icon">📊</div>
+  <h3>Activity Tracking</h3>
+  <p>Log your daily activities and review past progress anytime.</p>
+  <ul className="feature-list">
+    <li>Add and track your daily activities</li>
+    <li>Review past activities anytime</li>
+    <li>Set and achieve custom goals</li>
+    <li>🔥 Stay consistent, analyze your progress</li>
+  </ul>
+  
+</div>
+
+
+       
       </div>
 
       <div className="features-cta">
         <h2>Ready to boost your productivity?</h2>
-        <p>Join thousands of users who have improved their task management</p>
-        <Link to="/register" className="cta-button primary">Start Free Trial</Link>
+        <p> ✨ Elevate their learning and master time management.</p>
+        <p className="login-message">🔒 Please log in to access these features.</p>
+        <Link to="/todo" className="cta-button primary">Start Free Trial</Link>
       </div>
     </div>
   );

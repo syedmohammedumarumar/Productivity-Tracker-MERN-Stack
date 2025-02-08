@@ -5,6 +5,7 @@ import Home from './pages/Home/Home'
 import Todo from './pages/Todo/Todo'
 import './App.css'
 import Activity from './pages/Activity/Activity'
+import Grid from './pages/Grid/Grid'
 
 // Set axios defaults
 axios.defaults.baseURL = 'http://localhost:4000'
