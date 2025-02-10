@@ -33,7 +33,7 @@ const Activities = () => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:4000/api/activities/get', config);
+        const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
         setActivities(response.data);
       } catch (error) {
         toast.error(error.response?.data?.message || 'Error fetching activities');
@@ -80,17 +80,17 @@ const Activities = () => {
       setLoading(true);
       if (selectedActivity) {
         await axios.put(
-          `http://localhost:4000/api/activities/update/${selectedActivity._id}`,
+          `https://productivity-tracker-backend-0p7z.onrender.com/api/activities/update/${selectedActivity._id}`,
           formData,
           config
         );
         toast.success('Activity updated successfully');
       } else {
-        await axios.post('http://localhost:4000/api/activities/add', formData, config);
+        await axios.post('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/add', formData, config);
         toast.success('Activity added successfully');
       }
       
-      const response = await axios.get('http://localhost:4000/api/activities/get', config);
+      const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
       setActivities(response.data);
 
       handleClose();
@@ -133,10 +133,10 @@ const Activities = () => {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       try {
         setLoading(true);
-        await axios.delete(`http://localhost:4000/api/activities/delete/${activityId}`, config);
+        await axios.delete(`https://productivity-tracker-backend-0p7z.onrender.com/api/activities/delete/${activityId}`, config);
         toast.success('Activity deleted successfully');
 
-        const response = await axios.get('http://localhost:4000/api/activities/get', config);
+        const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
         setActivities(response.data);
       } catch (error) {
         toast.error(error.response?.data?.message || 'Error deleting activity');
