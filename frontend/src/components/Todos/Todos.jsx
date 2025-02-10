@@ -14,6 +14,9 @@ const Todos = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Backend URL
+  const BACKEND_URL = 'https://productivity-tracker-backend-0p7z.onrender.com';
+
   // Configure axios with authentication header
   const getAuthConfig = () => {
     const token = localStorage.getItem('userToken'); // Changed from 'token' to 'userToken'
@@ -32,7 +35,7 @@ const Todos = () => {
   const fetchTodos = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/todo/get', getAuthConfig());
+      const response = await axios.get(`${BACKEND_URL}/api/todo/get`, getAuthConfig());
       setTodos(response.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch todos');
@@ -45,7 +48,7 @@ const Todos = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post('/api/todo/add', newTodo, getAuthConfig());
+      const response = await axios.post(`${BACKEND_URL}/api/todo/add`, newTodo, getAuthConfig());
       setTodos([...todos, response.data]);
       setNewTodo({ title: '', description: '' });
       setIsModalOpen(false);
@@ -61,7 +64,7 @@ const Todos = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        `/api/todo/update/${currentTodo._id}`, 
+        `${BACKEND_URL}/api/todo/update/${currentTodo._id}`, 
         newTodo, 
         getAuthConfig()
       );
@@ -82,7 +85,7 @@ const Todos = () => {
   const handleDeleteTodo = async (id) => {
     try {
       setLoading(true);
-      await axios.post(`/api/todo/delete/${id}`, {}, getAuthConfig());
+      await axios.post(`${BACKEND_URL}/api/todo/delete/${id}`, {}, getAuthConfig());
       setTodos(todos.filter(todo => todo._id !== id));
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to delete todo');
