@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './LoginPopup.css';
 import axios from 'axios';
 
+const BACKEND_URL = 'https://productivity-tracker-backend-0p7z.onrender.com';
+
 const LoginPopup = ({ isOpen, onClose, onLoginSuccess }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState({
@@ -12,7 +14,6 @@ const LoginPopup = ({ isOpen, onClose, onLoginSuccess }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('userToken');
@@ -67,7 +68,7 @@ const LoginPopup = ({ isOpen, onClose, onLoginSuccess }) => {
       setIsLoading(true);
       try {
         const endpoint = isLoginMode ? '/api/users/login' : '/api/users/register';
-        const response = await axios.post(`http://localhost:4000${endpoint}`, formData);
+        const response = await axios.post(`${BACKEND_URL}${endpoint}`, formData);
         
         localStorage.setItem('userToken', response.data.token);
         localStorage.setItem('userName', response.data.name);
