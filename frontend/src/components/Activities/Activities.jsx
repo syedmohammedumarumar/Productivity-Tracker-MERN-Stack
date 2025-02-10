@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Activities.css';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+
+const BACKEND_URL = 'https://productivity-tracker-backend-0p7z.onrender.com';
 
 const Activities = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,11 +15,15 @@ const Activities = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  // Fetch all activities when component mounts
+  // Simple alert replacement for toast
+  const showAlert = (message, type = 'info') => {
+    alert(message);
+  };
+
   useEffect(() => {
     const userToken = localStorage.getItem('userToken');
     if (!userToken) {
-      toast.error('Authentication userToken missing. Please log in again.');
+      showAlert('Authentication token missing. Please log in again.');
       window.location.href = '/';
       return;
     }
@@ -33,10 +38,10 @@ const Activities = () => {
     const fetchActivities = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
+        const response = await axios.get(`${BACKEND_URL}/api/activities/get`, config);
         setActivities(response.data);
       } catch (error) {
-        toast.error(error.response?.data?.message || 'Error fetching activities');
+        showAlert(error.response?.data?.message || 'Error fetching activities', 'error');
         if (error.response?.status === 401) {
           localStorage.removeItem('userToken');
           window.location.href = '/';
@@ -64,7 +69,7 @@ const Activities = () => {
   const handleSubmit = async () => {
     const userToken = localStorage.getItem('userToken');
     if (!userToken) {
-      toast.error('Authentication userToken missing. Please log in again.');
+      showAlert('Authentication token missing. Please log in again.');
       window.location.href = '/';
       return;
     }
@@ -80,22 +85,22 @@ const Activities = () => {
       setLoading(true);
       if (selectedActivity) {
         await axios.put(
-          `https://productivity-tracker-backend-0p7z.onrender.com/api/activities/update/${selectedActivity._id}`,
+          `${BACKEND_URL}/api/activities/update/${selectedActivity._id}`,
           formData,
           config
         );
-        toast.success('Activity updated successfully');
+        showAlert('Activity updated successfully');
       } else {
-        await axios.post('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/add', formData, config);
-        toast.success('Activity added successfully');
+        await axios.post(`${BACKEND_URL}/api/activities/add`, formData, config);
+        showAlert('Activity added successfully');
       }
       
-      const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
+      const response = await axios.get(`${BACKEND_URL}/api/activities/get`, config);
       setActivities(response.data);
 
       handleClose();
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Error saving activity');
+      showAlert(error.response?.data?.message || 'Error saving activity', 'error');
       if (error.response?.status === 401) {
         localStorage.removeItem('userToken');
         window.location.href = '/';
@@ -118,7 +123,7 @@ const Activities = () => {
   const handleDelete = async (activityId) => {
     const userToken = localStorage.getItem('userToken');
     if (!userToken) {
-      toast.error('Authentication userToken missing. Please log in again.');
+      showAlert('Authentication token missing. Please log in again.');
       window.location.href = '/';
       return;
     }
@@ -133,13 +138,13 @@ const Activities = () => {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       try {
         setLoading(true);
-        await axios.delete(`https://productivity-tracker-backend-0p7z.onrender.com/api/activities/delete/${activityId}`, config);
-        toast.success('Activity deleted successfully');
+        await axios.delete(`${BACKEND_URL}/api/activities/delete/${activityId}`, config);
+        showAlert('Activity deleted successfully');
 
-        const response = await axios.get('https://productivity-tracker-backend-0p7z.onrender.com/api/activities/get', config);
+        const response = await axios.get(`${BACKEND_URL}/api/activities/get`, config);
         setActivities(response.data);
       } catch (error) {
-        toast.error(error.response?.data?.message || 'Error deleting activity');
+        showAlert(error.response?.data?.message || 'Error deleting activity', 'error');
         if (error.response?.status === 401) {
           localStorage.removeItem('userToken');
           window.location.href = '/';
